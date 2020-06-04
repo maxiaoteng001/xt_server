@@ -1,10 +1,12 @@
 import os
 
 from flask import Flask
+from src.utils.logger_helper import logger_config
 
 
 def create_app(test_config=None):
     # create and configure the app
+    logger_config(log_name='xt_server')
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
