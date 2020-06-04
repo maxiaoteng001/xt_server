@@ -4,3 +4,4 @@ click
 envparse
 gunicorn
 twilio
+gevent
