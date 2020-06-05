@@ -1,5 +1,4 @@
 import os
-
 from flask import Flask
 from src.utils.logger_helper import logger_config
 
@@ -10,7 +9,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+        # DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
 
     if test_config is None:
@@ -31,7 +30,9 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
-    from . import sms
-    app.register_blueprint(sms.sms)
-
+    from . import tools
+    from . import api
+    app.register_blueprint(tools.tools_bp)
+    app.register_blueprint(api.api_bp)
+    print(app.url_map)
     return app

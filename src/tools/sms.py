@@ -1,21 +1,19 @@
-import functools
 import logging
 from src.utils import textmyself
+from src.tools import tools_bp
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 
-sms = Blueprint('sms', __name__, url_prefix='/sms')
-
-@sms.route('/help', methods=['GET'])
-def help():
+@tools_bp.route('/sms/help', methods=['GET'])
+def sms_help():
     # return render_template('help.html')
     return '用来发送短信到自己的手机!'
 
 
-@sms.route('/send_message', methods=['POST'])
-@sms.route('/send_message/<message>', methods=['GET'])
+@tools_bp.route('/sms/send_message', methods=['POST'])
+@tools_bp.route('/sms/send_message/<message>', methods=['GET'])
 def send_message(message=None):
     if request.method == 'POST':
         message = request.get_json().get('message')
