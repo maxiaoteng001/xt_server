@@ -63,3 +63,4 @@ out/
 instance/
 .DS_store
 
+bk/*
