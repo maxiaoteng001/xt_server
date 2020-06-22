@@ -12,12 +12,21 @@ def logger_config(enable_console_handler=False,
                     log_name='app', 
                     log_level='INFO',
                     log_file_max_count=5,
-                    by_day=True):
+                    by_day=True,
+                    always=False):
+    '''
+    日志配置, 默认按天命名
+
+    :param boolean by_day: 按天切分日志, 按天命名
+    :param boolean always: 按天切分日志, always
+    '''
     log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../../logs')
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)
     # 因为有多个进程，所以用时间戳做id, 延迟2s启动，日志名以分钟结尾
-    if by_day:
+    if always:
+        datetime_str = 'always'
+    elif by_day:
         datetime_str = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d')
     else:
         datetime_str = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d_%H:%M:%S')
