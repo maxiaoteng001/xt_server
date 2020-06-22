@@ -10,9 +10,9 @@ from src.tools import tools_bp
 def random_string():
     # 默认密码只包含字母和数字
     level = request.args.get('level', '4')
-    if level == '4':
-        str = ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(20)])
-    elif level == '5':
+    if level == '5':
         str = ''.join([random.choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(20)])
+    else:
+        str = ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(20)])
     logging.info('生成随机密码:{}'.format(str))
     return json.dumps({'random_string': str})
