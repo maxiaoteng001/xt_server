@@ -38,8 +38,9 @@ def create_app(test_config=None):
         return 'Hello, World!'
 
     @app.route('/')
+    @app.route('/index.html')
     def index():
-        return 'Hello, World!'
+        return render_template('index.html')
 
     # @app.route("/all-links")
     # def all_links():
