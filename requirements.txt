@@ -5,3 +5,5 @@ envparse
 gunicorn
 twilio
 gevent
+flask_sitemap
+pymysql
