@@ -16,7 +16,7 @@ def beijing_metro():
     end_date = request.args.get('end_date', '2999')
     client = MysqlHelper(dbconfig)
     sql = '''
-    select * from spider.weibo_info where data_date>'{}' and data_date<'{}' order by data_date
+    select * from spider.weibo_info where data_date>='{}' and data_date<='{}' order by data_date
     '''.format(start_date, end_date)
     data = client.query(sql)
     passenger_flow = [float(d.get('passenger_flow', '0'))/10000 for d in data]
