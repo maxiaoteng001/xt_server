@@ -5,6 +5,9 @@ echo 'git 拉取结束'
 echo '开启虚拟环境'
 source venv/bin/activate
 
+echo '安装依赖'
+python3 -m pip install -r requirements.txt
+
 echo '杀掉之前进程'
 ps -efww|grep -w 'gevent_run.py'|grep -v grep|cut -c 9-15|xargs kill -9
 
